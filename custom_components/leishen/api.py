@@ -16,7 +16,6 @@ from .const import (
     EP_PAUSE,
     EP_RECOVER,
     EP_SMS_SEND,
-    EP_TIME_LOG,
     HEADERS,
 )
 
@@ -180,9 +179,6 @@ class LeishenClient:
 
     async def async_recover(self) -> dict[str, Any]:
         return await self._request(EP_RECOVER, allow_codes={400803})
-
-    async def async_time_log(self) -> dict[str, Any]:
-        return await self._request(EP_TIME_LOG, {"page": 1, "size": 5})
 
     @staticmethod
     def is_paused(info: dict[str, Any]) -> bool:

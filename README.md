@@ -1,6 +1,6 @@
 # 雷神加速器 Home Assistant 集成
 
-把雷神加速器（leigod）接入 Home Assistant，支持**短信验证码登录**、加速时长暂停/恢复、剩余时长与网络延时监控，并可与其他设备（如 Xbox、PS5）做自动化联动。
+把雷神加速器（leigod）接入 Home Assistant，支持**短信验证码登录**、加速时长暂停/恢复、剩余时长监控，并可与其他设备（如 Xbox、PS5）做自动化联动。
 
 > 非官方集成。通过雷神 Web API 实现，接口可能随官方调整而失效。
 
@@ -14,8 +14,7 @@
 | 🔑 Token 登录 | 备用方式，从浏览器复制 `account_token` 粘贴即可 |
 | 🚀 加速开关 | `switch` 实体，开 = 继续计时，关 = 暂停计时 |
 | ⏱ 剩余时长 | 剩余可用时长（小时） |
-| 📊 账号状态 | 计时中 / 已暂停，附带 VIP 等级、最后暂停时间 |
-| 🌐 网络延时 | 到指定目标的 TCP 往返时延，60 秒刷新 |
+| 📊 账号状态 | 计时中 / 已暂停 |
 | 🔄 自动重认证 | 登录态过期时 HA 会提示重新登录，无需删除重装 |
 | 🎨 品牌图标 | 自带雷神官方图标 |
 
@@ -89,13 +88,6 @@ JSON.parse(localStorage.getItem('account_token')).account_token
 | `switch.leishen_accelerate` | switch | 开 = 继续计时，关 = 暂停计时 |
 | `sensor.leishen_status` | sensor | `计时中` / `已暂停` |
 | `sensor.leishen_remaining` | sensor | 剩余时长（h） |
-| `sensor.leishen_latency` | sensor | 网络延时（ms） |
-
-### 延时探测目标
-
-设置 → 设备与服务 → 雷神加速器 → **配置**，可修改探测目标，格式 `域名或IP:端口`，默认 `www.baidu.com:443`。
-
-想观察某台游戏服务器的线路质量，就填它的地址（需支持 TCP）。填不了的（纯 UDP 服务）会显示 unknown。
 
 ---
 
@@ -161,7 +153,7 @@ automation:
 ## 常见问题
 
 **Q：添加集成后实体是 `unknown`？**
-A：检查 HA 日志。若延时传感器为 unknown，通常是目标地址不可达，换个目标即可。
+A：检查 HA 日志中 `custom_components.leishen` 的记录，通常是 Token 失效或接口返回异常。
 
 **Q：开关点了没反应 / 报错？**
 A：查看日志中 `custom_components.leishen` 的记录。401/400006 类错误说明 Token 失效，重新认证。
@@ -171,6 +163,22 @@ A：可以，每个账号单独添加一次集成。
 
 **Q：手机号登录收不到短信？**
 A：雷神有频率限制，等几分钟再试；也可改用 Token 方式。
+
+---
+
+## 更新记录
+
+### v1.1.0
+
+- 移除 `sensor.leishen_latency`。雷神不开放加速节点，用普通 ping/TCP 测出的时延与游戏内延迟无关，属于误导性数据
+- 精简实体属性：`sensor.leishen_status` 去掉 nickname / VIP 等级 / 最后暂停时间等冗余字段，`switch.leishen_accelerate` 去掉重复的原始状态字段
+- 移除只服务于延时传感器的"选项"配置流程和无人调用的 `async_time_log`
+
+> 升级后 HA 里可能残留一个 `unavailable` 的 `sensor.leishen_latency`，在实体设置里删除即可。
+
+### v1.0.0
+
+- 首个版本
 
 ---
 

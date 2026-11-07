@@ -52,16 +52,5 @@
       "already_configured": "该账号已经配置过了",
       "reauth_successful": "重新认证成功"
     }
-  },
-  "options": {
-    "step": {
-      "init": {
-        "title": "雷神加速器选项",
-        "description": "延时传感器的探测目标，格式 域名或IP:端口，例如 www.baidu.com:443。\\n默认测到百度 443 的 TCP 握手时间。\\n注意：雷神不开放节点 IP 与游戏延时数据，这里测的是你本机到目标服务器的真实网络延时，能反映线路质量变化，但不等于游戏内延迟。",
-        "data": {
-          "ping_target": "探测目标（host:port）"
-        }
-      }
-    }
   }
 }

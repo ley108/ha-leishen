@@ -8,7 +8,6 @@ API_BASE = "https://webapi.leigod.com"
 EP_INFO = "/api/user/info"
 EP_PAUSE = "/api/user/pause"
 EP_RECOVER = "/api/user/recover"
-EP_TIME_LOG = "/api/user/time/log"
 
 # 短信验证码登录
 EP_SMS_SEND = "/tools/smscode"
@@ -17,10 +16,6 @@ EP_LOGIN_CODE = "/api/auth/login/code"
 CONF_MOBILE = "mobile_num"
 CONF_COUNTRY_CODE = "country_code"
 CONF_SMSCODE = "smscode"
-
-# 延时探测目标（ICMP），可在集成"选项"里修改
-CONF_PING_TARGET = "ping_target"
-DEFAULT_PING_TARGET = "www.baidu.com:443"
 
 DEFAULT_SCAN_INTERVAL = 300  # 秒
 

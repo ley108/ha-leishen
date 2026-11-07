@@ -57,15 +57,6 @@ class LeishenAccelerateSwitch(CoordinatorEntity[LeishenCoordinator], SwitchEntit
     def is_on(self) -> bool:
         return not LeishenClient.is_paused(self.coordinator.data or {})
 
-    @property
-    def extra_state_attributes(self) -> dict:
-        info = self.coordinator.data or {}
-        return {
-            "pause_status": info.get("pause_status"),
-            "pause_status_id": info.get("pause_status_id"),
-            "nickname": info.get("nickname"),
-        }
-
     async def async_turn_on(self, **kwargs) -> None:
         """恢复加速计时。"""
         try:
