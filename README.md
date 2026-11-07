@@ -26,13 +26,13 @@
 ### 方式一：HACS（推荐）
 
 1. HACS → 集成 → 右上角 ⋮ → **自定义存储库**
-2. 仓库地址填本仓库 URL，类别选 **Integration**
+2. 仓库地址填：`https://github.com/ley108/ha-leishen`，类别选 **Integration**
 3. 在 HACS 中搜索「雷神加速器」安装
 4. **重启 Home Assistant**
 
 ### 方式二：手动安装
 
-1. 下载 Release 里的 `leishen.zip`，或直接下载仓库源码
+1. 下载 [Release](https://github.com/ley108/ha-leishen/releases/latest) 里的 `leishen.zip`
 2. 把 `custom_components/leishen` 整个文件夹复制到 HA 配置目录下：
    ```
    config/
