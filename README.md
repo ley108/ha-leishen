@@ -166,22 +166,6 @@ A：雷神有频率限制，等几分钟再试；也可改用 Token 方式。
 
 ---
 
-## 更新记录
-
-### v1.1.0
-
-- 移除 `sensor.leishen_latency`。雷神不开放加速节点，用普通 ping/TCP 测出的时延与游戏内延迟无关，属于误导性数据
-- 精简实体属性：`sensor.leishen_status` 去掉 nickname / VIP 等级 / 最后暂停时间等冗余字段，`switch.leishen_accelerate` 去掉重复的原始状态字段
-- 移除只服务于延时传感器的"选项"配置流程和无人调用的 `async_time_log`
-
-> 升级后 HA 里可能残留一个 `unavailable` 的 `sensor.leishen_latency`，在实体设置里删除即可。
-
-### v1.0.0
-
-- 首个版本
-
----
-
 ## 许可
 
 MIT License。使用风险自负，请遵守雷神加速器用户协议。
