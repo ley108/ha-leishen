@@ -1,0 +1,67 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "雷神加速器",
+        "description": "选择登录方式。推荐用短信验证码。",
+        "menu_options": {
+          "sms_phone": "手机号 + 短信验证码",
+          "token": "手动粘贴 Account Token"
+        }
+      },
+      "sms_phone": {
+        "title": "手机号登录",
+        "description": "输入雷神账号绑定的手机号，点提交后会下发短信验证码。\n国内号码区号填 86。",
+        "data": {
+          "mobile_num": "手机号",
+          "country_code": "国家/地区区号"
+        }
+      },
+      "sms_code": {
+        "title": "输入短信验证码",
+        "description": "验证码已发送到 {mobile}，请查收短信后填入（通常 5 分钟内有效）。",
+        "data": {
+          "smscode": "短信验证码"
+        }
+      },
+      "token": {
+        "title": "粘贴 Account Token",
+        "description": "1. 浏览器登录 https://www.leigod.com/\n2. F12 → Console\n3. 执行：JSON.parse(localStorage.getItem('account_token')).account_token\n4. 复制结果粘贴到下方\n\nToken 有效期约 7 天。",
+        "data": {
+          "account_token": "Account Token"
+        }
+      },
+      "reauth_menu": {
+        "title": "重新认证雷神加速器",
+        "description": "登录态已失效，请重新登录。",
+        "menu_options": {
+          "sms_phone": "手机号 + 短信验证码",
+          "token": "手动粘贴 Account Token"
+        }
+      }
+    },
+    "error": {
+      "invalid_mobile": "手机号格式不正确",
+      "sms_send_failed": "短信发送失败，可能触发频率限制，请稍后再试",
+      "invalid_code": "验证码错误或已过期，请重新获取",
+      "invalid_auth": "Token 无效或已过期",
+      "cannot_connect": "无法连接雷神服务器，检查网络后重试",
+      "unknown": "未知错误，请查看日志"
+    },
+    "abort": {
+      "already_configured": "该账号已经配置过了",
+      "reauth_successful": "重新认证成功"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "雷神加速器选项",
+        "description": "延时传感器的探测目标，格式 域名或IP:端口，例如 www.baidu.com:443。\\n默认测到百度 443 的 TCP 握手时间。\\n注意：雷神不开放节点 IP 与游戏延时数据，这里测的是你本机到目标服务器的真实网络延时，能反映线路质量变化，但不等于游戏内延迟。",
+        "data": {
+          "ping_target": "探测目标（host:port）"
+        }
+      }
+    }
+  }
+}
